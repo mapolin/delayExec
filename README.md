@@ -4,8 +4,8 @@
     delay will be restarted after the same callback (name) is 'resaved'
 
 # Usage:
->
-  DelayExec(name, function, delay, scope);
+
+DelayExec(name, function, delay, scope);
   
 ```
 @name::string -> the name of the callback, this is used in order to restart/remove a callback from the stack
