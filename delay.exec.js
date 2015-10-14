@@ -16,24 +16,24 @@
 
     // define DelayExec helper
     window['DelayExec'] = function(name, callback, delay, scope) {
-        this._delayExec_instances = this._delayExec_instances || {};
+        window._delayExec_instances = window._delayExec_instances || {};
 
         if(!name || !callback) {
             console.warn('No {name} and/or {callback} passed to DelayExec. Exiting...');
             return;
         }
 
-        if(!this._delayExec_instances[name]) {
+        if(!window._delayExec_instances[name]) {
             var _delay = delay || 20;
-            var scope = scope || this;
-            return this._delayExec_instances[name] = setTimeout(function() {
-                callback.call(this);
-                delete this._delayExec_instances[name];
+            var scope = scope || window;
+            return window._delayExec_instances[name] = setTimeout(function() {
+                callback.call(scope);
+                delete window._delayExec_instances[name];
             }, delay);
         } else {
-            clearTimeout(this._delayExec_instances[name]);
-            delete this._delayExec_instances[name];
-            return this.DelayExec(name, callback, delay, scope);
+            clearTimeout(window._delayExec_instances[name]);
+            delete window._delayExec_instances[name];
+            return window.DelayExec(name, callback, delay, scope);
         }
     };
 
